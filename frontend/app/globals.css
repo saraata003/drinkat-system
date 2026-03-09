@@ -1,0 +1,245 @@
+:root{
+  --bg1:#12c7c5;
+  --bg2:#0fb6c6;
+  --card:#0aa8b7;
+  --white: #ffffff;
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.72);
+  --line: rgba(255,255,255,0.22);
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans Arabic", "Noto Sans", sans-serif;
+}
+
+/* خلفية تركواز + watermark شعار */
+.drinkat-bg{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px 18px;
+  background: radial-gradient(1200px 800px at 20% 10%, #20d6d4 0%, transparent 60%),
+              radial-gradient(900px 700px at 90% 40%, #10c0cf 0%, transparent 55%),
+              linear-gradient(135deg,var(--bg1),var(--bg2));
+  position:relative;
+  overflow:hidden;
+}
+
+.drinkat-bg::before{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  background-image: url("/drinkat-bg.png");
+  background-size: 520px;
+  background-repeat: repeat;
+  opacity: 0.08;        /* خليها خفيفة */
+  transform: rotate(-8deg);
+  pointer-events:none;
+}
+
+/* حاوية البطاقة */
+.card-wrap{
+  width: min(390px, 92vw);
+  position:relative;
+  z-index:2;
+}
+
+.card{
+  border-radius: 32px;
+  padding: 18px 18px 16px;
+  background: rgba(9, 158, 172, 0.55);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 30px 90px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* الهيدر العلوي (Member Card + Card/Expiry) */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.pill{
+  padding:7px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.rightmeta{
+  text-align:right;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.rightmeta b{ color: var(--text); font-weight: 900; }
+
+/* شعار Drinkat */
+.brand{
+  text-align:center;
+  margin-top: 14px;
+}
+.brand .title{
+  color: var(--white);
+  font-weight: 1000;
+  letter-spacing: 2px;
+  font-size: 34px;
+}
+.brand .sub{
+  color: rgba(255,255,255,0.80);
+  letter-spacing: 8px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+/* VIP badge */
+.vipbadge{
+  margin: 12px auto 0;
+  width: fit-content;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.16);
+  color: var(--text);
+  font-weight: 900;
+}
+
+/* النقاط */
+.points{
+  text-align:center;
+  margin-top: 14px;
+}
+.points .num{
+  color: var(--white);
+  font-weight: 1000;
+  font-size: 64px;
+  line-height: 1;
+}
+.points .label{
+  margin-top: 6px;
+  color: rgba(255,255,255,0.92);
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+/* progress */
+.progress{
+  margin-top: 14px;
+  padding: 0 6px;
+}
+.bar{
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.26);
+  overflow:hidden;
+}
+.fill{
+  height:100%;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  transition: width .45s ease;
+}
+.protxt{
+  margin-top: 9px;
+  text-align:center;
+  color: rgba(255,255,255,0.82);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* دائرة القطة */
+.mascot-ring{
+  margin: 18px auto 0;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.30), rgba(255,255,255,0.10));
+  border: 1px solid rgba(255,255,255,0.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+}
+.mascot-img{
+  width: 115%;
+  height: 115%;
+  object-fit: contain;         /* ما يقص التاج */
+  object-position: center top; /* يرفعها شوي لفوق */
+  transform: translateY(6px);  /* تعديل بسيط لتوسيط أحلى */
+  filter: drop-shadow(0 18px 22px rgba(0,0,0,0.22));
+}
+/* صورة القطة - أهم شي: contain + مساحة أكبر */
+.mascot-img{
+  width: 92%;
+  height: 92%;
+  object-fit: contain;   /* ما تقص راسها */
+  filter: drop-shadow(0 18px 22px rgba(0,0,0,0.22));
+}
+
+/* صندوق الاسم/الهاتف */
+.infobox{
+  margin-top: 16px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  padding: 14px 14px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+.infobox .left{
+  color: rgba(0,0,0,0.55);
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.infobox .right{
+  text-align:right;
+  color: rgba(0,0,0,0.78);
+  font-weight: 1000;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+/* QR box */
+.qrbox{
+  margin-top: 14px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  padding: 16px;
+  display:flex;
+  justify-content:center;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+/* المستويات تحت */
+.levels{
+  margin-top: 14px;
+  text-align:center;
+  color: rgba(255,255,255,0.90);
+  font-weight: 900;
+  font-size: 13px;
+}
+.footer{
+  margin-top: 10px;
+  text-align:center;
+  color: rgba(255,255,255,0.78);
+  font-weight: 800;
+  font-size: 12px;
+}

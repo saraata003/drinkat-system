@@ -1,0 +1,11 @@
+npm.page{
+  width:100%;
+  height:100vh;
+
+  background-image:url("/drinkat-bg.png");
+  background-size:contain;
+  background-position:center top;
+  background-repeat:no-repeat;
+
+  background-color:#b9dce7;
+}

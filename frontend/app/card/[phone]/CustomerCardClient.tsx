@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { QRCodeCanvas } from "qrcode.react";
 
-const API = "http://127.0.0.1:8000";
+const API = process.env.NEXT_PUBLIC_API_URL!;
 
 type VipLevel = {
   key: "rookie" | "explorer" | "star" | "vip";
